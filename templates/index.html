@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World I'm Sjay Pits</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <h1>Hello World!  I'm Sjay Pits</h1>
+
+    <h2>Add a Comment</h2>
+    <form method="POST">
+        <textarea name="comment" rows="4" cols="50"></textarea>
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+        <li>
+            {{ comment['comment'] }}
+            <span class="timestamp">({{ comment['timestamp'] }})</span>
+            <span class="upvotes" id="upvote-count-{{ comment['id'] }}">({{ comment['upvotes'] }})</span>
+            <button onclick="upvote( {{ comment['id'] }} )">Upvote</button>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
